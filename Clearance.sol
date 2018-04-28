@@ -6,10 +6,11 @@ contract Clearance is Owned {
     mapping (address => bytes32) members;
     
     struct Role {
-        bytes32 id;     // ID of the role
-        uint timelock;  // Length of time between 
-        uint256 limit;  // Amount in wei role can withdrawl per timelock
-        uint16 level;   // Ascending list of levels, e.g. level 1 can approve level 2, 3, ..., requests
+        bytes32 id;         // ID of the role
+        uint timelock;      // Length of time between 
+        uint256 limit;      // Amount in wei role can withdrawl per timelock
+        uint16 level;       // Ascending list of levels, e.g. level 1 can approve level 2, 3, ..., requests
+        bool autoApprove;   // If true the role does not require approval (but is still bound to timelock and limit)
     }
     
     // Get role of member
@@ -38,12 +39,13 @@ contract Clearance is Owned {
     }
     
     // Create a new role, or overwrite existing role
-    function createUpdateRole(bytes32 id, uint timelock, uint256 limit, uint16 level) external onlyOwner {
+    function createUpdateRole(bytes32 id, uint timelock, uint256 limit, uint16 level, bool autoApprove) external onlyOwner {
         roles[id] = Role({
             id: id,
             timelock: timelock,
             limit: limit,
-            level: level
+            level: level,
+            autoApprove: autoApprove
         });
     }
 
