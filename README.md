@@ -1,5 +1,27 @@
 # LootSafe.MultiLevelMultiSig.contract
 
+
+# Usage
+
+## Roles
+Roles are descriptions of the members abilites within the contract. You can define the amount the member can withdrawal, how often the can withdrawal that amount (multiple smaller amounts within that time frame are also possible) as well as the level of the role.
+
+### Description
+
+#### Timelock
+A timelock is how often a user can withdrawal, for instance with a timelock of one day, the user can withdrawal up to their limit within one day, as transactions become older than the timelock they can withdrwal more funds.
+
+#### Limit
+The limit is simply how much (in wei) the user can withdrawal within the timelock.
+
+#### Level
+The level comes into play when approving withdrawl requests. A member with a higher rank can approve withdrawls for lower ranking members. For example an `admin` role with a level of `0` can approve `moderator` roles with a level of `1`, `noob` roles with a level of `2` and so on.
+
+### Creating & Managing roles
+
+
+
+
 # Clearance Contract
 ```
 roles(id => Role);
