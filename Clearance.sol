@@ -1,18 +1,35 @@
+pragma solidity ^0.4.18;
 
 // TODO: Actions in this file should be multisig so owner cannot have total authority
-contract Clearance {
-    roles(bytes32 => Role);
-    members(address => bytes32);
+contract Clearance is Owned {
+    mapping (bytes32 => Role) roles;
+    mapping (address => bytes32) members;
     
-    Role {
+    struct Role {
         bytes32 id;     // ID of the role
         uint timelock;  // Length of time between 
         uint256 limit;  // Amount in wei role can withdrawl per timelock
         uint16 level;   // Ascending list of levels, e.g. level 1 can approve level 2, 3, ..., requests
     }
     
+    // Get role of member
+    function getMemberRole(address member) public view returns (bytes32) {
+        return members[member];
+    }
+    
+    // Get role information
+    function getRole(bytes32 id) public view returns (bytes32, uint, uint256, uint16) {
+        Role memory role = roles[id];
+        return (
+            role.id,
+            role.timelock,
+            role.limit,
+            role.level
+        );
+    }
+    
     // Check that a member has the authority to authorize/deny a withdrawl
-    _isAuthorized(address _authorizor, address _requester) internal view returns (bool) {
+    function _isAuthorized(address _authorizor, address _requester) internal view returns (bool) {
         Role memory authorizor = roles[members[_authorizor]];
         Role memory requester = roles[members[_requester]];
         
@@ -21,7 +38,7 @@ contract Clearance {
     }
     
     // Create a new role, or overwrite existing role
-    createUpdateRole(bytes32 id, uint timelock, uint256 limit, uint16 level) external onlyOwner {
+    function createUpdateRole(bytes32 id, uint timelock, uint256 limit, uint16 level) external onlyOwner {
         roles[id] = Role({
             id: id,
             timelock: timelock,
@@ -31,18 +48,18 @@ contract Clearance {
     }
 
     // Delete a role from the system, members with this role lose all functionality
-    deleteRole(bytes32 id) external onlyOwner {
+    function deleteRole(bytes32 id) external onlyOwner {
         delete roles[id];
     }
     
     // Assign a role to a member by address
-    assignRole(address member, bytes32 id) external onlyOwner {
+    function assignRole(address member, bytes32 id) external onlyOwner {
         assert(roles[id].id != 0x00);
         members[member] = id;
     }
     
     // Remove a member from a role
-    removeRole(address member) external onlyOwner {
+    function removeRole(address member) external onlyOwner {
         delete members[member];
     }
 }
