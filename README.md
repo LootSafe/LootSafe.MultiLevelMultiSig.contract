@@ -19,6 +19,7 @@ checkLimit
  
 isSupervisor (address msg.sender, address requester)
   check if users role level is less than that of the role provided requester
+  or if the sender is the owner of the contract
  
 addMember(address, id)
   members[address] = id;
