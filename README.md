@@ -104,8 +104,5 @@ denyRequest (id)
   require(isSupervisor(msg.sender, request.requester))
   require(request.status == 0); // require request to be pending
   request.status = 2;
-  
-
-
 
 ```
