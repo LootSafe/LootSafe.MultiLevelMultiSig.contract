@@ -21,17 +21,17 @@ isSupervisor (address msg.sender, address requester)
   check if users role level is less than that of the role provided requester
   or if the sender is the owner of the contract
  
-addMember(address, id)
+addMember(address, id) onlyOwner
   members[address] = id;
   
-removeMember(address)
+removeMember(address) onlyOwner
   delete members[address];
  
 createUpdateRole (name, timelock, limit, level, id)
   create and update roles
   if id exists, update role, else generate id and create new role
 
-deleteRole (onlyOwner)
+deleteRole () onlyOwner
   remove a role
   
  ```
