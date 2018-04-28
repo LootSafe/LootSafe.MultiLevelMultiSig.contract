@@ -1,6 +1,6 @@
 # LootSafe.MultiLevelMultiSig.contract
 
-# Role Contract
+# Clearance Contract
 ```
 Role {
   id: '0x0' // Id of the role
@@ -14,7 +14,7 @@ canWithdrawl
   Check if the user has pending withdrawls in last role.timelock
   check if withdrawl request + pendingWithdrawl exceeds role.limit
  
-canApprove (address msg.sender, address requester)
+isSupervisor (address msg.sender, address requester)
   check if users role level is less than that of the role provided requester
  
 createUpdateRole (onlyOwner)
@@ -25,3 +25,76 @@ deleteRole (onlyOwner)
   
  ```
  
+# Book Contract
+
+```
+Request {
+  requester: address // address of requester
+  at: now, // Time of request
+  amount: 1000000, // Amount in wei being requested for withdrawl
+  status: 0,1,2 // pending, approved, denied
+}
+
+requestsById(id => Request);
+requestsByRequester (address => bytes32[]);
+requests[bytes32];
+
+getRequests 
+  return requests
+
+getRequestsByRequester(address requester)
+  return requestsByRequester[requester];
+  
+getRequestById (id)
+  return requestsById[id]
+  
+makeRequest (amount) {
+  // ensure user has a role assigned
+  // create request struct
+  Request memory request = Request({
+    requester: msg.sender,
+    at: now,
+    amount: amount,
+    status: 0
+  })
+  bytes32 id = // generate id somehow
+  requestsById[id] = request;
+  requestsByRequester[msg.sender].push(id);
+  requests.push(id);
+  
+  // Request Event
+  
+}
+  
+```
+ 
+# MultiLevelMultiSig Contract
+
+```
+is Clearance
+
+constructor () {
+  owner = msg.sender;
+}
+
+request (amount) {
+  
+}
+
+approveRequest (id)
+  Request storage request = requestsById[id];
+  require(isSupervisor(msg.sender, request.requester)) // require superior role to requestor 
+  require(request.status == 0); // require request to be pending
+  // send request.amount to request.requester
+  request.status = 1;
+ 
+denyRequest (id)
+  Request storage request = requestsById[id];
+  require(isSupervisor(msg.sender, request.requester))
+  require(request.status == 0); // require request to be pending
+  request.status = 2;
+  
+
+
+
+```
