@@ -2,6 +2,9 @@
 
 # Clearance Contract
 ```
+roles(id => Role);
+members(address => id);
+
 Role {
   id: '0x0' // Id of the role
   name: 'Admin' // Human readable name of the role
@@ -10,15 +13,22 @@ Role {
   level: 1 // ascending list of levels, e.g. level 1 can approve level 2, 3, 4, 5 requests
 }
 
-canWithdrawl
+checkLimit
   Check if the user has pending withdrawls in last role.timelock
   check if withdrawl request + pendingWithdrawl exceeds role.limit
  
 isSupervisor (address msg.sender, address requester)
   check if users role level is less than that of the role provided requester
  
-createUpdateRole (onlyOwner)
+addMember(address, id)
+  members[address] = id;
+  
+removeMember(address)
+  delete members[address];
+ 
+createUpdateRole (name, timelock, limit, level, id)
   create and update roles
+  if id exists, update role, else generate id and create new role
 
 deleteRole (onlyOwner)
   remove a role
@@ -47,12 +57,12 @@ getRequestsByRequester(address requester)
   
 getRequestById (id)
   return requestsById[id]
-  
-makeRequest (amount) {
+   
+makeRequest (requester, amount) {
   // ensure user has a role assigned
   // create request struct
   Request memory request = Request({
-    requester: msg.sender,
+    requester: requester,
     at: now,
     amount: amount,
     status: 0
@@ -63,7 +73,6 @@ makeRequest (amount) {
   requests.push(id);
   
   // Request Event
-  
 }
   
 ```
@@ -78,7 +87,8 @@ constructor () {
 }
 
 request (amount) {
-  
+  require(checkLimit(msg.sender, amount));
+  makeRequest(msg.sender, amount);
 }
 
 approveRequest (id)
