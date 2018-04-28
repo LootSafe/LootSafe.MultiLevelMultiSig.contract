@@ -1,5 +1,6 @@
 # LootSafe.MultiLevelMultiSig.contract
 
+The Multi Level Multi Sig contract allows multisig through roles and daily limits. Members can withdrawl only the alotted amount of Ether within the assigned timeframe. Roles can be assinged to approve requests to withdrawal made by users. Although the user can create withdrawl requests at any time, requests are first checked against the limit and timelock of the role a member is in. To futher ensure security you can 
 
 # Usage
 
@@ -16,6 +17,9 @@ The limit is simply how much (in wei) the user can withdrawal within the timeloc
 
 #### Level
 The level comes into play when approving withdrawl requests. A member with a higher rank can approve withdrawls for lower ranking members. For example an `admin` role with a level of `0` can approve `moderator` roles with a level of `1`, `noob` roles with a level of `2` and so on.
+
+#### AutoApprove
+If true users will not require approval from a higher ranking role, but will still be bound to the timelock and limit restrictions.
 
 ### Creating & Managing roles
 
