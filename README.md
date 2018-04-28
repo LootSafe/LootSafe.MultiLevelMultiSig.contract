@@ -23,6 +23,13 @@ If true users will not require approval from a higher ranking role, but will sti
 
 ### Creating & Managing roles
 
+#### createUpdateRole
+
+Create a new role within the contract
+
+```solidity
+function createUpdateRole(bytes32 id, uint timelock, uint256 limit, uint16 level, bool autoApprove) external onlyOwner 
+```
 
 
 
