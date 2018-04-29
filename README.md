@@ -5,9 +5,8 @@ The Multi Level Multi Sig contract allows multisig through roles and daily limit
 # Usage
 
 ## Roles
-Roles are descriptions of the members abilites within the contract. You can define the amount the member can withdrawal, how often the can withdrawal that amount (multiple smaller amounts within that time frame are also possible) as well as the level of the role.
 
-### Description
+Roles are descriptions of the members abilites within the contract. You can define the amount the member can withdrawal, how often the can withdrawal that amount (multiple smaller amounts within that time frame are also possible) as well as the level of the role.
 
 #### Timelock
 A timelock is how often a user can withdrawal, for instance with a timelock of one day, the user can withdrawal up to their limit within one day, as transactions become older than the timelock they can withdrwal more funds.
