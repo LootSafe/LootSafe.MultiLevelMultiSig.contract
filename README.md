@@ -65,10 +65,6 @@ Role {
   limit: 10000000 // Amount in wei to limit per timelock
   level: 1 // ascending list of levels, e.g. level 1 can approve level 2, 3, 4, 5 requests
 }
-
-checkLimit
-  Check if the user has pending withdrawls in last role.timelock
-  check if withdrawl request + pendingWithdrawl exceeds role.limit
  
 isSupervisor (address msg.sender, address requester)
   check if users role level is less than that of the role provided requester
@@ -139,6 +135,10 @@ is Clearance
 constructor () {
   owner = msg.sender;
 }
+
+checkLimit
+  Check if the user has pending withdrawls in last role.timelock
+  check if withdrawl request + pendingWithdrawl exceeds role.limit
 
 request (amount) {
   require(checkLimit(msg.sender, amount));
