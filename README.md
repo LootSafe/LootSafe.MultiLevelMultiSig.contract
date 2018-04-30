@@ -18,14 +18,39 @@ Roles are descriptions of the members abilites within the contract. You can defi
 
 ### Creating & Managing roles
 
-#### createUpdateRole
+#### Create or update a role
 
-Create a new role within the contract
+Create a new role within the contract, after creation the owner can apply the role to members. ROles can be updated by calling this function again.
 
 ```solidity
 function createUpdateRole(bytes32 id, uint timelock, uint256 limit, uint16 level, bool autoApprove) external onlyOwner 
 ```
 
+#### Delete a role
+
+Delete a role from the contract, members who have this role assigned to them will be assumed to have no role after deletion.
+
+```solidity
+function deleteRole(bytes32 id) external onlyOwner
+```
+
+#### Assign a role
+
+Assign a role to a user. Assigning a role gives the member the ability to withdrawal as much and as often as defined by the role they are assigned.
+
+```solidity
+function assignRole(address member, bytes32 id) external onlyOwner
+```
+
+#### Remove a role from a member
+
+Removing a role from a memeber will disallow all interaction with this contract by that member (unless they are the owner)
+
+```solidity
+ function removeRole(address member) external onlyOwner
+ ```
+ 
+ 
 
 
 # Clearance Contract
