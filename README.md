@@ -69,3 +69,8 @@ Removing a role from a memeber will disallow all interaction with this contract 
 |----- |----- |------------ |
 |address|member|The the member to assign this role to|
 
+
+## Requests
+
+Requests can be made at any frequency and in any amount so long as the total value of the pending requets within the past x timelock do not exceed the limit set on the role. Some requets may be auto approved depending on your role however this does not mean a role can bypass the limit of the role within the timelock.
+
