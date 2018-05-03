@@ -41,6 +41,9 @@ Delete a role from the contract, members who have this role assigned to them wil
 ```solidity
 function deleteRole(bytes32 id) external onlyOwner
 ```
+| type | name | description |
+|----- |----- |------------ |
+|bytes32|id|Id of the role, e.g. `admin`|
 
 #### Assign a role
 
@@ -49,6 +52,10 @@ Assign a role to a user. Assigning a role gives the member the ability to withdr
 ```solidity
 function assignRole(address member, bytes32 id) external onlyOwner
 ```
+| type | name | description |
+|----- |----- |------------ |
+|address|member|The the member to assign this role to|
+|bytes32|id|Id of the role, e.g. `admin`|
 
 #### Remove a role from a member
 
@@ -58,4 +65,7 @@ Removing a role from a memeber will disallow all interaction with this contract 
  function removeRole(address member) external onlyOwner
  ```
 
- 
+| type | name | description |
+|----- |----- |------------ |
+|address|member|The the member to assign this role to|
+
