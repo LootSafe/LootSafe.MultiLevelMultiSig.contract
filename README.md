@@ -9,6 +9,8 @@ The Multi Level Multi Sig contract allows multisig through roles and daily limit
 ### Hey! Listen!!
 This contract works best wrapped in our MultiSigCall contract unless you plan to use the freeze() method!
 
+**How?** - Simply call the `transferOwnership` from the owner account and provied the call the address of your deployed MultiSigCall contract.
+
 ----
 
 # Usage
