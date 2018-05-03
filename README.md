@@ -63,7 +63,7 @@ function deleteRole(bytes32 id) external onlyOwner
 ```
 | type | name | description |
 |----- |----- |------------ |
-|bytes32|id|Id of the role, e.g. `admin`|
+|`bytes32`|id|Id of the role, e.g. `admin`|
 
 #### Assign a role
 
@@ -74,8 +74,8 @@ function assignRole(address member, bytes32 id) external onlyOwner
 ```
 | type | name | description |
 |----- |----- |------------ |
-|address|member|The the member to assign this role to|
-|bytes32|id|Id of the role, e.g. `admin`|
+|`address`|member|The the member to assign this role to|
+|`bytes32`|id|Id of the role, e.g. `admin`|
 
 #### Remove a role from a member
 
@@ -87,7 +87,7 @@ Removing a role from a memeber will disallow all interaction with this contract 
 
 | type | name | description |
 |----- |----- |------------ |
-|address|member|The the member to assign this role to|
+|`address`|member|The the member to assign this role to|
 
 
 ## Requests
@@ -114,7 +114,7 @@ Making a request will create a request in the system, if your role has `autoAppr
 
 | type | name | description |
 |----- |----- |------------ |
-|uint256|value|The amount in wei you'd like to withdraw|
+|`uint256`|value|The amount in wei you'd like to withdraw|
 
 #### Approve a request
 
@@ -126,7 +126,7 @@ Approving a request will set the status of the request to approved preventing an
 
 | type | name | description |
 |----- |----- |------------ |
-|bytes32|id|The ID of the request to approve|
+|`bytes32`|id|The ID of the request to approve|
 
 #### Deny a request
 
@@ -138,7 +138,7 @@ Denying a request will set the status of the request to denied preventing any fu
 
 | type | name | description |
 |----- |----- |------------ |
-|bytes32|id|The ID of the request to deny|
+|`bytes32`|id|The ID of the request to deny|
 
 #### Get requests
 
@@ -158,7 +158,7 @@ Returns all information about a request by id
 
 | type | name | description |
 |----- |----- |------------ |
-|bytes32|id|The ID of the request to fetch|
+|`bytes32`|id|The ID of the request to fetch|
 
 #### Get a request by member
 
@@ -170,4 +170,4 @@ Returns all request ids filtered by member.
 
 | type | name | description |
 |----- |----- |------------ |
-|address|requester|The address to perform the request lookup on|
+|`address`|requester|The address to perform the request lookup on|
