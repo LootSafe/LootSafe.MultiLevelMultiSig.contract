@@ -26,6 +26,14 @@ Create a new role within the contract, after creation the owner can apply the ro
 function createUpdateRole(bytes32 id, uint timelock, uint256 limit, uint16 level, bool autoApprove) external onlyOwner 
 ```
 
+| type | name | description |
+|----- |----- |------------ |
+|bytes32|id|Id of the role, e.g. `admin`|
+|uint|timelock|The lenght of time in seconds before the withdrawl cap resets|
+|uint256|limit|The amount in Wei the member can withdraw within this timelock|
+|uint16|level|The rank of this role the lower the number the higher ranking this role is|
+|bool|autoApprove|If true he role will not require approval for withdraws|
+
 #### Delete a role
 
 Delete a role from the contract, members who have this role assigned to them will be assumed to have no role after deletion.
@@ -49,19 +57,5 @@ Removing a role from a memeber will disallow all interaction with this contract 
 ```solidity
  function removeRole(address member) external onlyOwner
  ```
- 
-| type | name | description |
-|----- |----- |------------ |
-|bytes32|id|Id of the role, e.g. `admin`|
-|uint|timelock|The lenght of time in seconds before the withdrawl cap resets|
-|uint256|limit|The amount in Wei the member can withdraw within this timelock|
-|uint16|level|The rank of this role the lower the number the higher ranking this role is|
-|bool|autoApprove|If true he role will not require approval for withdraws|
- 
-| method 	| parameters 	| description 	|
-|--------	|------------	|-------------	|
-|createUpdateRole |bytes32 id, uint timelock, uint256|             	|
-|        	|            	|             	|
-|        	|            	|             	|
- 
+
  
