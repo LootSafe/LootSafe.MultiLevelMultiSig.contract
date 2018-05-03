@@ -52,7 +52,7 @@ Removing a role from a memeber will disallow all interaction with this contract 
  
 | method 	| parameters 	| description 	|
 |--------	|------------	|-------------	|
-|        	|            	|             	|
+|createUpdateRole            |            	|             	|
 |        	|            	|             	|
 |        	|            	|             	|
  
