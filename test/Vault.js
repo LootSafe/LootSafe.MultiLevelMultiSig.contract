@@ -1,10 +1,10 @@
 const expectThrow = require('./helpers/expectThrow')
 
-const MLMS = artifacts.require('MultiLevelMultiSig.sol')
+const MLMS = artifacts.require('Vault.sol')
 
 const gasPrice = 6000029
 
-contract('MultiLevelMultiSig', (accounts) => {
+contract('Vault', (accounts) => {
   it('should deploy', async () => {
     const instance = await MLMS.new(accounts[0])
     if (instance.address === undefined) throw new Error('deployment failed')
