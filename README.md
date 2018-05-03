@@ -1,6 +1,6 @@
 ----
 
-<img align="left" src="https://assets.entrepreneur.com/content/3x2/1300/20160112205229-sign-falling-ladder-brick-rock-bottom-person-danger-prevention.jpeg?width=750" data-canonical-src="https://assets.entrepreneur.com/content/3x2/1300/20160112205229-sign-falling-ladder-brick-rock-bottom-person-danger-prevention.jpeg?width=750" width="100"/>
+<img align="left" src="https://assets.entrepreneur.com/content/3x2/1300/20160112205229-sign-falling-ladder-brick-rock-bottom-person-danger-prevention.jpeg?width=750" data-canonical-src="https://assets.entrepreneur.com/content/3x2/1300/20160112205229-sign-falling-ladder-brick-rock-bottom-person-danger-prevention.jpeg?width=750" width="150"/>
 
 ### Woah there!
 This contract has yet to be audited, before you go storing all your Ether here please have this contract audited, or wait for us to audit it.
