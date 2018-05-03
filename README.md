@@ -105,15 +105,58 @@ Making a request will create a request in the system, if your role has `autoAppr
 |----- |----- |------------ |
 |uint256|value|The amount in wei you'd like to withdraw|
 
-#### Make a request
+#### Approve a request
 
-Making a request will create a request in the system, if your role has `autoApprove` enabled you will not require approval and will receive your withdraw request immediatly. Otherwise a higher ranking member must approve your request.
+Approving a request will set the status of the request to approved preventing any futher approvals or denials, in addition the value of this request will be transferred to the requester.
 
 ```solidity
- function request (uint256 value) public
+ function approveRequest (bytes32 id) external
  ```
 
 | type | name | description |
 |----- |----- |------------ |
-|uint256|value|The amount in wei you'd like to withdraw|
+|bytes32|id|The ID of the request to approve|
 
+#### Deny a request
+
+Denying a request will set the status of the request to denied preventing any futher approvals or denials, in addition the value of this request will **NOT** be transferred to the requester.
+
+```solidity
+ function denyRequest (bytes32 id) external
+ ```
+
+| type | name | description |
+|----- |----- |------------ |
+|bytes32|id|The ID of the request to deny|
+
+#### Get requests
+
+List all requests in the system
+
+```solidity
+ function getRequests () public view returns (bytes32[])
+```
+ 
+#### Get a request by id
+
+Returns all information about a request by id
+
+```solidity
+ function getRequest (bytes32 id) public view returns (address, uint, uint256, uint16)
+ ```
+
+| type | name | description |
+|----- |----- |------------ |
+|bytes32|id|The ID of the request to fetch|
+
+#### Get a request by member
+
+Returns all request ids filtered by member.
+
+```solidity
+ function getRequestsByRequester (address requester) public view returns (bytes32[])
+ ```
+
+| type | name | description |
+|----- |----- |------------ |
+|address|requester|The address to perform the request lookup on|
