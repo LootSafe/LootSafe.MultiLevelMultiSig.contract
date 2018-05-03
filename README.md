@@ -83,3 +83,8 @@ Removing a role from a memeber will disallow all interaction with this contract 
 
 Requests can be made at any frequency and in any amount so long as the total value of the pending requets within the past x timelock do not exceed the limit set on the role. Some requets may be auto approved depending on your role however this does not mean a role can bypass the limit of the role within the timelock.
 
+**ID** - The ID is a keccak256 of the requester, epoc timestamp of request, value, and status of the request.
+**Requester** - The address of the member making the request
+**At** - Timestamp of the request
+**Value** - The value of the request in wei
+**Status** - The status of the request (0 - pending, 1 - approved, 2 - denied)
