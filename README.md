@@ -48,11 +48,11 @@ function createUpdateRole(bytes32 id, uint timelock, uint256 limit, uint16 level
 
 | type | name | description |
 |----- |----- |------------ |
-|bytes32|id|Id of the role, e.g. `admin`|
-|uint|timelock|The lenght of time in seconds before the withdrawl cap resets|
-|uint256|limit|The amount in Wei the member can withdraw within this timelock|
-|uint16|level|The rank of this role the lower the number the higher ranking this role is|
-|bool|autoApprove|If true he role will not require approval for withdraws|
+|`bytes32`|id|Id of the role, e.g. `admin`|
+|`uint`|timelock|The lenght of time in seconds before the withdrawl cap resets|
+|`uint256`|limit|The amount in Wei the member can withdraw within this timelock|
+|`uint16`|level|The rank of this role the lower the number the higher ranking this role is|
+|`bool`|autoApprove|If true he role will not require approval for withdraws|
 
 #### Delete a role
 
