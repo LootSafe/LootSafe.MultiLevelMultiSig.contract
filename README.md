@@ -23,7 +23,7 @@ Roles are descriptions of the members abilites within the contract. You can defi
 
 **Level** - The level comes into play when approving withdraw requests. A member with a higher rank can approve withdraws for lower ranking members. For example an `admin` role with a level of `0` can approve `moderator` roles with a level of `1`, `noob` roles with a level of `2` and so on.
 
-**AutoApprove** - If true users will not require approval from a higher ranking role, but will still be bound to the timelock and limit restrictions.
+**AutoApprove** - If true users will not require approval from a higher ranking role, but will still be bound to the timelock and limit restrictions. It is highly reccomended that the highest level role (e.g. 0) has this flag set to true, else the highest level role will never be able to have their requests approved. (unless you're using the MultiSigCall contract)
 
 ### Creating & Managing roles
 
@@ -92,3 +92,28 @@ Requests can be made at any frequency and in any amount so long as the total val
 **Value** - The value of the request in wei
 
 **Status** - The status of the request (0 - pending, 1 - approved, 2 - denied)
+
+#### Make a request
+
+Making a request will create a request in the system, if your role has `autoApprove` enabled you will not require approval and will receive your withdraw request immediatly. Otherwise a higher ranking member must approve your request.
+
+```solidity
+ function request (uint256 value) public
+ ```
+
+| type | name | description |
+|----- |----- |------------ |
+|uint256|value|The amount in wei you'd like to withdraw|
+
+#### Make a request
+
+Making a request will create a request in the system, if your role has `autoApprove` enabled you will not require approval and will receive your withdraw request immediatly. Otherwise a higher ranking member must approve your request.
+
+```solidity
+ function request (uint256 value) public
+ ```
+
+| type | name | description |
+|----- |----- |------------ |
+|uint256|value|The amount in wei you'd like to withdraw|
+
