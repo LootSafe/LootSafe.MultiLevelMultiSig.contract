@@ -3,6 +3,11 @@ pragma solidity ^0.4.18;
 import "./Ownable.sol";
 
 contract Clearance is Ownable {
+  event RoleCreated(bytes32 id);
+  event RoleDeleted(bytes32 id);
+  event MemberPromoted(address member, bytes32 role);
+  event MemberDemoted(address member);
+  
   mapping (bytes32 => Role) roles;
   mapping (address => bytes32) members;
     
@@ -15,7 +20,7 @@ contract Clearance is Ownable {
   }
     
   /**
-    * @noice Get role of a member
+    * @notice Get role of a member
     * @dev Return the role id of an address
     * @param member The members address
     */
@@ -67,6 +72,7 @@ contract Clearance is Ownable {
       level: level,
       autoApprove: autoApprove
     });
+    RoleCreated(id);
   }
 
   /**
@@ -76,6 +82,7 @@ contract Clearance is Ownable {
     */
   function deleteRole(bytes32 id) external onlyOwner {
     delete roles[id];
+    RoleDeleted(id);
   }
     
   /**
@@ -87,6 +94,7 @@ contract Clearance is Ownable {
   function assignRole(address member, bytes32 id) external onlyOwner {
     assert(roles[id].id != 0x00);
     members[member] = id;
+    MemberPromoted(member, id);
   }
     
   /**
@@ -96,5 +104,6 @@ contract Clearance is Ownable {
     */
   function removeRole(address member) external onlyOwner {
     delete members[member];
+    MemberDemoted(member);
   }
 }

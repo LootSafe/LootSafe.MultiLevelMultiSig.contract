@@ -4,7 +4,11 @@ import "./Clearance.sol";
 import "./Requests.sol";
 
 contract MultiLevelMultiSig is Clearance, Requests {    
-    
+  event FundsReceived(uint value, address from);
+  event RequestMade(bytes32 id, address requester, uint at, uint256 value);
+  event RequestApproved(bytes32 id);
+  event RequestDenied(bytes32 id);
+
   /** 
     * @notice Ensure member withdrawl limit isn't exceeded.
     * @dev requested withdrawal plus open and accepted withdrawals in past x time shouldn't exceed the roles limit
@@ -51,10 +55,13 @@ contract MultiLevelMultiSig is Clearance, Requests {
     requests.push(id);
     requestsByRequester[msg.sender].push(id);
     requestsById[id] = newRequest;
-        
+  
+    RequestMade(id, msg.sender, now, value);
+
     if (role.autoApprove) {
       // TODO: keep track of pending requests, disallow requests when conract 
       // doesn't have enough ether to fulfill them
+      RequestApproved(id);
       msg.sender.transfer(value);
     }
   }
@@ -68,7 +75,8 @@ contract MultiLevelMultiSig is Clearance, Requests {
     Request storage selectedRequest = requestsById[id];
     assert(_isAuthorized(msg.sender, selectedRequest.requester));
     selectedRequest.status = 1;
-    msg.sender.transfer(selectedRequest.value);
+    selectedRequest.requester.transfer(selectedRequest.value);
+    RequestApproved(id);
   }
   
   /**
@@ -80,6 +88,7 @@ contract MultiLevelMultiSig is Clearance, Requests {
     Request storage selectedRequest = requestsById[id];
     assert(_isAuthorized(msg.sender, selectedRequest.requester));    
     selectedRequest.status = 2;
+    RequestDenied(id);
   }
     
   /** 
@@ -88,5 +97,12 @@ contract MultiLevelMultiSig is Clearance, Requests {
     */
   function seal() public onlyOwner {
     owner = 0x0;
+  }
+
+  /**
+    * @notice Will accept any Ether sent to the contract
+    */
+  function () external payable {
+    FundsReceived(msg.value, msg.sender);
   }
 }

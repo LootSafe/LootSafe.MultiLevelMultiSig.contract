@@ -27,8 +27,8 @@ contract Requests {
     * @dev Get array of requests by member address
     * @param requester the address of the requester
     */
-  function getRequestsByRequester (address requestser) public view returns (bytes32[]) {
-    return requestsByRequester[requestser];
+  function getRequestsByRequester (address requester) public view returns (bytes32[]) {
+    return requestsByRequester[requester];
   }
     
   /**
