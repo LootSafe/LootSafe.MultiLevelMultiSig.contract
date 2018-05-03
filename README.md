@@ -4,10 +4,11 @@ The Multi Level Multi Sig contract allows multisig through roles and daily limit
 
 <img align="left" src="https://d1u5p3l4wpay3k.cloudfront.net/zelda_gamepedia_en/f/f7/Navi_Art.png" data-canonical-src="https://d1u5p3l4wpay3k.cloudfront.net/zelda_gamepedia_en/f/f7/Navi_Art.png" width="100"/>
 
-**Hey! Listen!!**
+### Hey! Listen!!
 This contract works best wrapped in our MultiSigCall contract unless you plan to use the freeze() method!
 
-===
+----
+
 # Usage
 
 ## Roles
