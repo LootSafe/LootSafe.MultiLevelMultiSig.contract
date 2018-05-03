@@ -3,7 +3,7 @@ pragma solidity ^0.4.18;
 import "./Clearance.sol";
 import "./Requests.sol";
 
-contract MultiLevelMultiSig is Clearance, Requests {    
+contract Vault is Clearance, Requests {    
   event FundsReceived(uint value, address from);
   event RequestMade(bytes32 id, address requester, uint at, uint256 value);
   event RequestApproved(bytes32 id);
